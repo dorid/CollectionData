@@ -1,0 +1,92 @@
+# Host: localhost  (Version: 5.0.18-nt)
+# Date: 2012-12-16 13:54:16
+# Generator: MySQL-Front 5.3  (Build 1.0)
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE */;
+/*!40101 SET SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES */;
+/*!40103 SET SQL_NOTES='ON' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS */;
+/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
+
+#
+# Source for table "analyze_data"
+#
+
+DROP TABLE IF EXISTS `analyze_data`;
+CREATE TABLE `analyze_data` (
+  `sname` varchar(255) default NULL,
+  `province` varchar(255) default NULL,
+  `download` decimal(32,0) default NULL,
+  `songer` varchar(255) default NULL,
+  `stype` varchar(255) default NULL,
+  UNIQUE KEY `sname` (`sname`,`province`,`songer`,`stype`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+#
+# Source for table "province"
+#
+
+DROP TABLE IF EXISTS `province`;
+CREATE TABLE `province` (
+  `province` varchar(255) NOT NULL,
+  UNIQUE KEY `province` (`province`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
+
+DROP TABLE IF EXISTS `songs`;
+CREATE TABLE `songs` (
+  `Id` int(11) NOT NULL auto_increment,
+  `sname` varchar(255) default NULL,
+  `province` varchar(255) default NULL,
+  `download` int(11) default NULL,
+  `stype` varchar(255) default NULL,
+  `songer` varchar(255) default NULL,
+  PRIMARY KEY  (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+SELECT sum(download) from songs
+
+SELECT sum(download) from songs
+
+
+insert into analyze_data(sname,province,download,songer,stype)
+(select sname,province,sum(download) download,songer,stype from songs group by sname,province,songer,stype)
+
+
+select sum(download) as download from analyze_data where sname='戴玉强' and songer='戴玉强'
+
+select * from analyze_data order by CONVERT( sname USING GBK ) ASC
+select t.* from (select count(1) count, a.* from (select * from analyze_data group by sname, songer) a group by sname) t where count>1
+
+
+
+select * from analyze_data order by sname
+
+select *, sum(songer) from analyze_data group by sname, songer
+
+
+DROP TABLE IF EXISTS `analyze_data`;
+CREATE TABLE analyze_data (
+  sname varchar(255) DEFAULT NULL,
+  province varchar(255) DEFAULT NULL,
+  download decimal(32,0) DEFAULT NULL,
+  UNIQUE KEY `sname` (`sname`,`province`)
+)
+
+select * from songs
+insert into analyze_data(sname,province,download) (select sname,province,sum(download) download from songs group by sname,province)
+select * from analyze_data order by sname
+
+select distinct stype from  songs
+
+select sum(download) from songs where sname='七月火把节' and province='四川';
+
+insert province (province) select distinct province from songs
