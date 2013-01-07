@@ -27,7 +27,7 @@ CREATE TABLE `analyze_data` (
   `songer` varchar(255) default NULL,
   `stype` varchar(255) default NULL,
   UNIQUE KEY `sname` (`sname`,`province`,`songer`,`stype`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 #
 # Source for table "province"
 #
@@ -36,7 +36,7 @@ DROP TABLE IF EXISTS `province`;
 CREATE TABLE `province` (
   `province` varchar(255) NOT NULL,
   UNIQUE KEY `province` (`province`)
-) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
+) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `songs`;
 CREATE TABLE `songs` (
@@ -47,7 +47,7 @@ CREATE TABLE `songs` (
   `stype` varchar(255) default NULL,
   `songer` varchar(255) default NULL,
   PRIMARY KEY  (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 
 
